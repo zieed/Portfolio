@@ -1,0 +1,34 @@
+Zied Horbit
+Computer Science Engineer | AI & Machine Learning Engineer
+
+Profile
+Computer Science Engineer with a background in software engineering, machine learning,
+generative AI, and data-driven application development. Experienced in building web and mobile
+applications and developing AI projects involving LLMs, RAG, and model training. National
+Engineering Diploma in Computer Science from ESPRIT, with hands-on experience across Python,
+Java, JavaScript, and modern AI tooling.
+
+Core Skills
+- Machine Learning / Deep Learning
+- Large Language Models and RAG
+- Computer Vision
+- Data Engineering and Pipelines
+- Model Deployment and Monitoring
+- Cloud AI Infrastructure
+
+Technical Stack
+Python, PyTorch, scikit-learn, LangChain, LangGraph, Hugging Face, Transformers, CUDA,
+Docker, Kubernetes, Argo CD, Node.js, Express.js, Spring Boot, Angular, Flutter, MongoDB,
+PostgreSQL, MySQL
+
+Selected Projects
+- WeProvide — Service Booking Platform (Symfony, Twig, Java, JavaFX, MySQL)
+- ChatDB — AI-Powered Database Assistant (Flutter, Node.js, Python, OpenAI API)
+- Retail Shop RAG Assistant (Python, RAG, Ollama, LLMs)
+- Zeta — 30M-Parameter Nano Language Model (Python, PyTorch, CUDA, Hugging Face)
+- ScreenCraft — Visual UI Builder (Angular, GridStack, Node.js, Express.js, MongoDB, Socket.IO)
+
+Contact
+Email: Zied.horbit@esprit.tn
+LinkedIn: https://www.linkedin.com/in/horbit-zied-960741197
+Phone: +216 26 343 215
