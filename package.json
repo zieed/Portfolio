@@ -11,5 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "three": "^0.183.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zieed/Portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zieed/Portfolio/issues"
+  },
+  "homepage": "https://github.com/zieed/Portfolio#readme"
 }

@@ -35,7 +35,7 @@ const projects = [
   {
     title: "Retail Shop RAG Assistant",
     detail: "A retrieval-augmented generation assistant grounded in shop-related information using a local LLM.",
-    github: "https://github.com/",
+    github: "https://github.com/zieed/SHOP-RAG.git",
     imageLabel: "RAG Assistant",
     galleryTags: ["Knowledge Base", "Local LLM", "Retrieval Flow", "Grounded Answers", "Ollama Runtime"],
     extended:
@@ -53,7 +53,7 @@ const projects = [
   {
     title: "ScreenCraft — Visual UI Builder",
     detail: "A web-based visual UI builder for designing interfaces through drag-and-drop interactions.",
-    github: "https://github.com/",
+    github: "https://github.com/zieed/ScreenCraft.git",
     imageLabel: "UI Builder",
     galleryTags: ["Drag & Drop", "Live Canvas", "Real-time Sync", "Component Grid", "Export UI"],
     extended:
@@ -341,9 +341,16 @@ let scrollProgress = 0;
 let projectFocusIndex = -1;
 
 function setupScrollState() {
+  const pill = document.querySelector(".top-page-title");
+
   function update() {
     const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
     scrollProgress = Math.min(window.scrollY / maxScroll, 1);
+    // Fade the sticky title pill once the visitor scrolls into the content so it
+    // never overlaps section headings or project cards.
+    if (pill) {
+      pill.classList.toggle("is-faded", window.scrollY > window.innerHeight * 0.7);
+    }
   }
 
   window.addEventListener("scroll", update, { passive: true });
@@ -495,7 +502,7 @@ function getOppositeRobotTargetFromProjects() {
   const layerTopPx = floatingLayer ? parseFloat(getComputedStyle(floatingLayer).top) || window.innerHeight * 0.09 : window.innerHeight * 0.09;
   const viewportCenterX = window.innerWidth * 0.5;
   const baseLayerCenterY = layerTopPx + floatingHeight * 0.56;
-  const cardTargetY = baseLayerCenterY;
+  const cardTargetY = window.innerHeight * 0.5;
 
   if (!section) {
     return {
@@ -547,6 +554,32 @@ function getOppositeRobotTargetFromProjects() {
       layerX: 0,
       layerY: 0,
       zoom: 0.28,
+    };
+  }
+
+  // Rest finale: only after the FINAL project card has scrolled up past the
+  // presentation area do we let the robot glide to the horizontal + vertical
+  // center of the viewport and rest with a calm idle. Triggering on the last
+  // card (rather than the rest-zone element) guarantees the robot is first seen
+  // cleanly to the LEFT of the last card before it settles into the open space
+  // below — completing the sequence. Frame-rate independent damping keeps the
+  // whole transition buttery smooth.
+  const lastCard = cards[cards.length - 1];
+  const lastRect = lastCard.getBoundingClientRect();
+  if (lastRect.bottom < window.innerHeight * 0.34) {
+    const restT = performance.now() * 0.001;
+    const centeredLayerY = window.innerHeight * 0.5 - baseLayerCenterY;
+    return {
+      x: 0,
+      yaw: Math.sin(restT * 0.6) * 0.12,
+      pitch: 0,
+      roll: Math.sin(restT * 0.45) * 0.03,
+      influence: 0.5,
+      scale: 0.9,
+      jump: 0.16 + Math.sin(restT * 1.1) * 0.03,
+      layerX: Math.sin(restT * 0.5) * (floatingWidth * 0.03),
+      layerY: centeredLayerY,
+      zoom: 0.2,
     };
   }
 
